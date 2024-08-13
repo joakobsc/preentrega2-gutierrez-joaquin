@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "modelo": "Toyota RAV4",
+    "category": "SUV",
+    "precio": 30000
+  },
+  {
+    "id": 2,
+    "modelo": "Honda CR-V",
+    "category": "SUV",
+    "precio": 32000
+  },
+  {
+    "id": 3,
+    "modelo": "Ford Escape",
+    "category": "SUV",
+    "precio": 28000
+  },
+  {
+    "id": 4,
+    "modelo": "Tesla Model 3",
+    "category": "Auto",
+    "precio": 45000
+  },
+  {
+    "id": 5,
+    "modelo": "Honda Civic",
+    "category": "Auto",
+    "precio": 25000
+  },
+  {
+    "id": 6,
+    "modelo": "Toyota Corolla",
+    "category": "Auto",
+    "precio": 23000
+  },
+  {
+    "id": 7,
+    "modelo": "Ford F-150",
+    "category": "Pickup",
+    "precio": 40000
+  },
+  {
+    "id": 8,
+    "modelo": "Chevrolet Silverado",
+    "category": "Pickup",
+    "precio": 42000
+  },
+  {
+    "id": 9,
+    "modelo": "RAM 1500",
+    "category": "Pickup",
+    "precio": 45000
+  }
+]
