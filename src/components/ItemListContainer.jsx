@@ -1,39 +1,53 @@
-import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import { Link, useParams } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import data from "../data/inventario.json";
 
 export const ItemListContainer = () => {
-  const [Items, setItems] = useState([]);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { id } = useParams();
 
   useEffect(() => {
     new Promise((res, rej) => {
-      setTimeout(() => res(data), 2000);
+      setTimeout(() => res(data));
     })
       .then((response) => {
-        setItems(response);
+        if (!id) {
+          setItems(response);
+        } else {
+          const filtered = response.filter((i) => i.category === id);
+          setItems(filtered);
+        }
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [id]);
 
-  if (loading) return "wait";
+  if (loading) return <div>Loading...</div>;
+
   return (
-    <Container className="mt-4 d-flex">
-      {Items.map((i) => (
-        <Card key={i.id} style={{ width: "18rem" }}>
-          <Card.Img variant="top" src="holder.js/100px180" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-      ))}
+    <Container className="mt-4">
+      <Row>
+        {items.map((item) => (
+          <Col key={item.id} xs={12} md={6} lg={4} className="mb-4">
+            <Card
+              className="card-custom"
+              style={{ width: "90%", minHeight: "100%" }}
+            >
+              <Card.Img variant="top" src={item.pictureUrl} />
+              <Card.Body>
+                <Card.Title>{item.modelo}</Card.Title>
+                <Card.Text>Clase: {item.category}</Card.Text>
+                <Card.Text>Precio: ${item.precio}</Card.Text>
+                <Link to={`/item/${item.id}`}>
+                  <Button variant="primary">Comprar</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 };
